@@ -1,13 +1,47 @@
 import React, { useState } from 'react'
 
 const Auth = () => {
-  const [] = useState()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [newAcount, setNewAcount] = useState(false)
+
+  const onChange = (event) => {
+    const {
+      target: { name, value },
+    } = event
+    if (name === 'email') {
+      setEmail(value)
+      console.log(email)
+    } else if (name === 'password') {
+      setPassword(value)
+    }
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefalut()
+    console.log('onSubmit')
+  }
+
   return (
     <div>
-      <form>
-        <input type="text" placeholder="Email" required></input>
-        <input type="password" placeholder="Password" required></input>
-        <input type="submit" value="Log In"></input>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={onChange}
+          required
+        ></input>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={onChange}
+          required
+        ></input>
+        <input type="submit" value="Sign In"></input>
       </form>
       <div>
         <button>Continue with Google</button>
